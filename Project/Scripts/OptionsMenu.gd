@@ -3,6 +3,7 @@ extends Control
 
 var gamePaused = false
 
+signal endGameFromMenu
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +11,7 @@ func _ready():
 	
 
 func _on_QuitButton_pressed():
-	get_tree().quit()
+	emit_signal("endGameFromMenu")
 
 
 func _on_ResumeButton_pressed():

@@ -1,6 +1,7 @@
 extends Node2D
 
 signal updateScore(newScore)
+signal updateHighScore(prevHighScore)
 signal updateOrganisms(numOrgs)
 signal updateObstacles(numObs)
 
@@ -15,6 +16,8 @@ export var max_organism_count = 400;
 
 onready var organism = preload("res://Scenes/Organism.tscn")
 var orgs = [] #array for loading total organisms
+
+onready var MenuLayer = get_node("MenuLayer")
 # array of all organisms that could possibly be in the level
 var organism_pool = [];
 # current index in the pool of the next organism that will be created
@@ -125,12 +128,12 @@ func _on_ScoreBucket_organism_scored():
 	currentScore+=1
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
-	
-func gameOver():
-	#call the end screen
-	
+
+
+func calcScore(score):
 	if currentScore > highScore:
 		highScore = currentScore
+		print("New high score: " + str(highScore))
 		save_highScore()
 
 func save_highScore():
@@ -146,5 +149,36 @@ func load_highScore():
 	if save_data.file_exists(SAVE_FILE_PATH):
 		save_data.open(SAVE_FILE_PATH, File.READ)
 		highScore = save_data.get_var() #reads first variable
+		emit_signal("updateHighScore", highScore)
+		print("Loaded high score: " + str(highScore))
 		save_data.close()
+		
+
+#save the score and then quit
+func _on_MenuLayer_endGame(score):
+	calcScore(score)
+	get_tree().quit()
+
+func _on_MenuLayer_restartGame(score):
+	calcScore(score)
+	#go to the main menu
+	#get_tree().change_scene(res://Scenes/MainMenu)
+
+func gameOver():
+	#pulls up the endGame menu
+	MenuLayer.endGame()
+	#stops the other organisms
+	get_tree().call_group("organism", "set_physics_process", false)
+	killOrgs()
+	killObjs()
+	
+func killOrgs():
+	var orgsdelete = get_tree().get_nodes_in_group("organisms")
+	for org in orgsdelete:
+		org.queue_free()
+	
+func killObjs():
+	var objsdelete = get_tree().get_nodes_in_group("objects")
+	for obj in objsdelete:
+		obj.queue_free()
 

@@ -167,7 +167,9 @@ func load_highScore():
 #save the score and then quit
 func _on_MenuLayer_endGame(score):
 	calcScore(score)
-	get_tree().quit()
+	get_tree().paused = false;
+	get_tree().change_scene("res://Scenes/MainMenu.tscn");
+	
 
 func _on_MenuLayer_restartGame(score):
 	calcScore(score)

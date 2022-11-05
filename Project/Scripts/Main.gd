@@ -23,6 +23,8 @@ var organism_current_pool_index = 0;
 var orgs_reproduction_times = [];
 var rng = RandomNumberGenerator.new();
 var viewport_size = Vector2.ZERO;
+var max_x_position = 1000.0;
+var min_x_position = 0.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +34,8 @@ func _ready():
 	emit_signal("updateOrganisms", initialOrganisms)
 	load_highScore()
 	viewport_size = get_viewport().size;
+	min_x_position = 200;
+	max_x_position = viewport_size.x - 200;
 	create_organism_pool();
 	spawn_organisms();
 
@@ -39,6 +43,8 @@ func create_organism_pool():
 	print("Creating organism pool...");
 	for i in range(max_organism_count):
 		var instantiated_organism = organism.instance();
+		instantiated_organism.min_x_position = min_x_position;
+		instantiated_organism.max_x_position = max_x_position;
 		disable_organism(instantiated_organism);
 		instantiated_organism.connect("organism_reproduced",self,"handle_organism_reproduction");
 		organism_pool.push_back(instantiated_organism);
@@ -49,7 +55,7 @@ func spawn_organisms():
 	var spawn_point = Vector2.ZERO;
 	
 	for i in range(initialOrganisms):
-		spawn_point = Vector2(rng.randf_range(30.0,viewport_size.x - 30.0), 0.0);
+		spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 		var instantiated_organism = organism_pool[organism_current_pool_index];
 		orgs.push_back(instantiated_organism);
 		orgs_reproduction_times.push_back(OS.get_ticks_msec());
@@ -62,14 +68,14 @@ func spawn_organism_family(parent_organism1,parent_organism2):
 	var spawn_point = Vector2.ZERO;
 	
 	# reposition parent 1
-	spawn_point = Vector2(rng.randf_range(30.0,viewport_size.x - 30.0), 0.0);
+	spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 
 	parent_organism1.reset_position = spawn_point;
 	parent_organism1.should_reset = true;
 	parent_organism1.separate_from_all();
 	
 	# reposition parent 2
-	spawn_point = Vector2(rng.randf_range(30.0,viewport_size.x - 30.0), 0.0);
+	spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 
 	parent_organism2.reset_position = spawn_point;
 	parent_organism2.should_reset = true;
@@ -80,14 +86,14 @@ func spawn_organism_family(parent_organism1,parent_organism2):
 		return;
 
 	# spawn child
-	spawn_point = Vector2(rng.randf_range(30.0,viewport_size.x - 30.0), 0.0);
+	spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 	var instantiated_organism = organism_pool[organism_current_pool_index];
 	orgs.push_back(instantiated_organism);
 	orgs_reproduction_times.push_back(OS.get_ticks_msec());
 	instantiated_organism.set_position(spawn_point);
 	enable_organism(instantiated_organism);
+	emit_signal("updateOrganisms", orgs.size());
 	organism_current_pool_index += 1;
-	print("Organism count: " + String(organism_current_pool_index));
 
 
 func handle_organism_reproduction(organism1, organism2):

@@ -11,10 +11,15 @@ var organisms_i_am_touching_times = [];
 
 var should_reset = false;
 var reset_position = Vector2.ZERO;
+var rng = RandomNumberGenerator.new();
+var viewport_size = Vector2.ZERO;
+var max_x_position = 1000.0;
+var min_x_position = 0.0;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rng.randomize();
+	viewport_size = get_viewport().size;
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,8 +40,10 @@ func check_if_should_reproduce(_delta):
 					organism_index -= 1;
 					continue;
 				if OS.get_ticks_msec() - organisms_i_am_touching_times[organism_index] >= reproduction_delay * 1000.0:
-					organisms_i_am_touching_times[organism_index] = OS.get_ticks_msec();
-					emit_signal("organism_reproduced",self,organisms_i_am_touching[organism_index]);
+					# ensure that we are really "stuck" and not moving alongside another organism
+					if linear_velocity.length_squared() < 4.0:
+						organisms_i_am_touching_times[organism_index] = OS.get_ticks_msec();
+						emit_signal("organism_reproduced",self,organisms_i_am_touching[organism_index]);
 			organism_index -= 1;
 
 
@@ -73,10 +80,18 @@ func separate_from_all():
 		organism_index -= 1;
 	
 func _integrate_forces(state):
-	if should_reset:	
-		var form = state.get_transform().rotated(-state.get_transform().get_rotation());
-		
+	# if we just reproduced, move to the top of the screen
+	if should_reset:
+		var form = state.get_transform().rotated(-state.get_transform().get_rotation());	
 		form.origin.x = reset_position.x;
 		form.origin.y = reset_position.y;
 		state.set_transform(form);
 		should_reset = false
+	
+	# if we are below the screen, move to the top of the screen
+	if state.get_transform().get_origin().y > viewport_size.y + 100.0:
+		var form = state.get_transform().rotated(-state.get_transform().get_rotation());
+		reset_position = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
+		form.origin.x = reset_position.x;
+		form.origin.y = reset_position.y;
+		state.set_transform(form);

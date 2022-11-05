@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://textures/creaturesprite.png" type="Texture" id=1]
+[ext_resource path="res://textures/creaturesprite2.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/ARIALBD.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1800.0
+margin_bottom = 1800.0
+color = Color( 0.647059, 0.909804, 0.917647, 1 )
+
+[node name="StartButton" type="Button" parent="."]
+margin_right = 300.0
+margin_bottom = 100.0
+flat = true
+
+[node name="StartLabel" type="Label" parent="StartButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.164706, 0.435294, 0.027451, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Start!"
+
+[node name="HelpButton" type="Button" parent="."]
+margin_top = 100.0
+margin_right = 300.0
+margin_bottom = 200.0
+flat = true
+
+[node name="HelpLabel" type="Label" parent="HelpButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 150, 100 )
+custom_colors/font_color = Color( 0.807843, 0.0784314, 0.231373, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Help!"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 561, 296 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 6 )
+playing = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

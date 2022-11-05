@@ -1,3 +1,29 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://Scripts/Obstacle.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ObstacleGraphic.gd" type="Script" id=2]
+
+[node name="Obstacle" type="StaticBody2D"]
+position = Vector2( 0, 16 )
+input_pickable = true
+script = ExtResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -17.5 )
+scale = Vector2( 1.12311, 1.0517 )
+polygon = PoolVector2Array( -27.6019, 19.4923, 0, -29.9515, 27.6019, 19.4923 )
+
+[node name="ObstacleGraphic" type="Node2D" parent="."]
+position = Vector2( 0, -17.5 )
+script = ExtResource( 2 )
+
+[node name="BlackOutline" type="Polygon2D" parent="ObstacleGraphic"]
+position = Vector2( -220, -182.5 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 189, 203, 220, 151, 251, 203 )
+
+[node name="Interior" type="Polygon2D" parent="ObstacleGraphic"]
+position = Vector2( -219.5, -182.4 )
+polygon = PoolVector2Array( 190.5, 201.9, 219.5, 152.9, 248.5, 201.9 )
+
+[connection signal="input_event" from="." to="." method="_input_event"]

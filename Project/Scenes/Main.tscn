@@ -30,6 +30,9 @@ position = Vector2( 648, 504 )
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 5 )]
 
+[connection signal="updateObstacles" from="." to="GameOverlay" method="_on_Main_updateObstacles"]
+[connection signal="updateOrganisms" from="." to="GameOverlay" method="_on_Main_updateOrganisms"]
+[connection signal="updateScore" from="." to="GameOverlay" method="_on_Main_updateScore"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket3" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket2" to="." method="_on_ScoreBucket_organism_scored"]

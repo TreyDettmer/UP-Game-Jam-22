@@ -16,32 +16,33 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="CurrentScoreLabel" type="Label" parent="."]
-margin_left = 16.0
+margin_left = 10.0
 margin_top = 16.0
-margin_right = 115.0
+margin_right = 109.0
 margin_bottom = 51.0
 custom_colors/font_color = Color( 0.113725, 0.976471, 0.270588, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Score: "
 
 [node name="NumOrganisms" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 155.0
-margin_right = 233.0
-margin_bottom = 240.0
+margin_left = 8.0
+margin_top = 478.0
+margin_right = 225.0
+margin_bottom = 563.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Active 
 organisms:"
 
 [node name="NumObstacles" type="Label" parent="."]
-margin_left = 16.0
-margin_top = 88.0
-margin_right = 165.0
-margin_bottom = 123.0
+margin_left = 8.0
+margin_top = 376.0
+margin_right = 157.0
+margin_bottom = 431.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Obstacles:"
+text = "Available
+obstacles:"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_left = 171.0

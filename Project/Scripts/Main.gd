@@ -1,5 +1,11 @@
 extends Node2D
 
+signal updateScore(newScore)
+signal updateOrganisms(numOrgs)
+signal updateObstacles(numObs)
+
+signal testSignal
+
 export var currentScore = 0
 var highScore = 0
 
@@ -12,4 +18,9 @@ var orgs = [] #array for loading total organisms
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+	
+func _on_ScoreBucket_organism_scored():
+	currentScore+=1
+	emit_signal("updateScore", currentScore)
+	print(currentScore)

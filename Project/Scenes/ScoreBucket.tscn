@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ScoreBucket.gd" type="Script" id=1]
+[ext_resource path="res://Art/rightcollisionscorebox.png.png" type="Texture" id=2]
+[ext_resource path="res://Art/leftcollisionscorebox.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 40, 7 )
+
+[node name="ScoreBucket" type="StaticBody2D" groups=["ScoreBucket"]]
+script = ExtResource( 1 )
+
+[node name="leftSideCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1, -1 )
+scale = Vector2( 9, 9 )
+polygon = PoolVector2Array( -4.58649, -0.0459473, -10.9432, -10.9432, -10.9432, 9.94324, -4.58649, 9.94324 )
+
+[node name="RightSideCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2( -7.10543e-15, -1 )
+rotation = 3.14159
+scale = Vector2( 9, 9 )
+polygon = PoolVector2Array( -10.8514, 10.0351, -10.8514, -9.94324, -4.4946, -9.94324, -4.49459, 0.0459477 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AddPointsCollider" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 80 )
+shape = SubResource( 1 )
+
+[node name="leftside" type="Sprite" parent="."]
+position = Vector2( -68, -8.00001 )
+scale = Vector2( 1.1, 1.6 )
+texture = ExtResource( 3 )
+
+[node name="rightside" type="Sprite" parent="."]
+position = Vector2( 72, -8 )
+scale = Vector2( 1.1, 1.6 )
+texture = ExtResource( 2 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

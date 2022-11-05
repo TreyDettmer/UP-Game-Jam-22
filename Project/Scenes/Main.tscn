@@ -25,6 +25,7 @@ position = Vector2( 232, 504 )
 [node name="ScoreBucket2" parent="ScoreBuckets" instance=ExtResource( 2 )]
 position = Vector2( 648, 504 )
 
+[connection signal="updateHighScore" from="." to="MenuLayer" method="_on_Main_updateHighScore"]
 [connection signal="updateObstacles" from="." to="MenuLayer" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="MenuLayer" method="_on_Main_updateOrganisms"]
 [connection signal="updateScore" from="." to="MenuLayer" method="_on_Main_updateScore"]

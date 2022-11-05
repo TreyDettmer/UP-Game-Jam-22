@@ -4,7 +4,7 @@ onready var gameOverScore = get_node("GameOverMenu/Score")
 #onready var gameOverHighScore = get_node("GameOverMenu/HighScoreEndGame")
 
 var score
-#var highScore
+var highScore
 signal endGame(score)
 signal restartGame(score)
 
@@ -39,3 +39,9 @@ func _on_RestartButton_pressed():
 
 func _on_OptionsMenu_endGameFromMenu():
 	_on_QuitButton_pressed()
+
+
+func _on_Main_updateHighScore(prevHighScore):
+	$HighScoreLabel.set_text("Prev Best: " + str(prevHighScore))
+	highScore = prevHighScore
+

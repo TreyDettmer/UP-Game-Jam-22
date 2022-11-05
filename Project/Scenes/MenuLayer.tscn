@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Fonts/ARIBLK.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/OptionsMenu.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/MenuLayer.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/OptionsMenu.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -24,7 +23,7 @@ custom_colors/font_color = Color( 0.113725, 0.976471, 0.270588, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Score: "
 
-[node name="HighScore" type="Label" parent="."]
+[node name="HighScoreLabel" type="Label" parent="."]
 margin_left = 832.0
 margin_top = 16.0
 margin_right = 1024.0
@@ -60,7 +59,6 @@ margin_right = 827.0
 margin_bottom = 600.0
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 2 )]
-script = ExtResource( 4 )
 
 [node name="GameOverMenu" type="GridContainer" parent="."]
 visible = false

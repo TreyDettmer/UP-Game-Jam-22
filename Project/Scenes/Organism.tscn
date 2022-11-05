@@ -16,8 +16,9 @@ radius = 30.0
 
 [node name="Organism" type="RigidBody2D" groups=["organism"]]
 continuous_cd = 1
-contacts_reported = 1
+contacts_reported = 4
 contact_monitor = true
+can_sleep = false
 script = ExtResource( 1 )
 
 [node name="Graphics" type="AnimatedSprite" parent="."]

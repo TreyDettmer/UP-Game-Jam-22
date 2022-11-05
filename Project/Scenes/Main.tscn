@@ -21,6 +21,17 @@ position = Vector2( 232, 504 )
 [node name="ScoreBucket2" parent="ScoreBuckets" instance=ExtResource( 2 )]
 position = Vector2( 648, 504 )
 
+[node name="LeftWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWall"]
+position = Vector2( 3, 0 )
+polygon = PoolVector2Array( 0, 600, 184, 600, 184, 400, 128, -320, 0, -320 )
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWall"]
+polygon = PoolVector2Array( 1024, 600, 808, 600, 808, 408, 864, -312, 1008, -312 )
+
 [connection signal="updateHighScore" from="." to="MenuLayer" method="_on_Main_updateHighScore"]
 [connection signal="updateObstacles" from="." to="MenuLayer" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="MenuLayer" method="_on_Main_updateOrganisms"]

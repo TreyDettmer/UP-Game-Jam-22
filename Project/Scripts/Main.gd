@@ -13,6 +13,8 @@ var highScore = 0
 export var initialOrganisms = 4
 export var initialObstacles = 20
 export var max_organism_count = 400;
+export var endGame_populationLimit = 50 #The maximum population before the game ends
+var isGameOver = false
 
 onready var organism = preload("res://Scenes/Organism.tscn")
 var orgs = [] #array for loading total organisms
@@ -42,6 +44,11 @@ func _ready():
 	create_organism_pool();
 	spawn_organisms();
 
+func _process(_delta):
+	if  orgs.size() > endGame_populationLimit:
+		isGameOver = true
+		gameOver()
+
 func create_organism_pool():
 	print("Creating organism pool...");
 	for i in range(max_organism_count):
@@ -55,6 +62,9 @@ func create_organism_pool():
 	print("Finished creating organism pool");
 
 func spawn_organisms():
+	if isGameOver:
+		pass
+	
 	var spawn_point = Vector2.ZERO;
 	
 	for i in range(initialOrganisms):
@@ -161,8 +171,7 @@ func _on_MenuLayer_endGame(score):
 
 func _on_MenuLayer_restartGame(score):
 	calcScore(score)
-	#go to the main menu
-	#get_tree().change_scene(res://Scenes/MainMenu)
+	get_tree().reload_current_scene()
 
 func gameOver():
 	#pulls up the endGame menu
@@ -173,8 +182,9 @@ func gameOver():
 	killObjs()
 	
 func killOrgs():
-	var orgsdelete = get_tree().get_nodes_in_group("organisms")
+	var orgsdelete = get_tree().get_nodes_in_group("organism")
 	for org in orgsdelete:
+		disable_organism(org)
 		org.queue_free()
 	
 func killObjs():

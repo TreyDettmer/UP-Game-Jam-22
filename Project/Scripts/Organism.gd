@@ -25,8 +25,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	check_if_should_reproduce(delta);
-
-
+	$AnimationPlayer.play("Falling")
 
 func check_if_should_reproduce(_delta):
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/creaturespritelegs.png-c163026b776f04bad18b088468cae0de.stex"
+path="res://.import/creaturespritelegs_L3.png-24b4d0c8d680143ad97d5ed82b40d919.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/creaturespritelegs.png"
-dest_files=[ "res://.import/creaturespritelegs.png-c163026b776f04bad18b088468cae0de.stex" ]
+source_file="res://Art/Organism/creaturespritelegs_L3.png"
+dest_files=[ "res://.import/creaturespritelegs_L3.png-24b4d0c8d680143ad97d5ed82b40d919.stex" ]
 
 [params]
 

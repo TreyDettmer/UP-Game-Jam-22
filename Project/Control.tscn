@@ -1,0 +1,85 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://textures/creaturesprite.png" type="Texture" id=1]
+[ext_resource path="res://textures/creaturesprite2.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/ARIALBD.TTF" type="DynamicFontData" id=3]
+
+[sub_resource type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="AnimatedTexture" id=1]
+flags = 4
+frames = 2
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 2 )
+frame_1/delay_sec = 0.0
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_bottom = 2000.0
+rect_min_size = Vector2( 2000, 2000 )
+color = Color( 0.647059, 0.909804, 0.917647, 1 )
+
+[node name="MainMenu" type="HBoxContainer" parent="."]
+material = SubResource( 5 )
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 960.0
+margin_bottom = 500.0
+
+[node name="MenuOptionsBox" type="VBoxContainer" parent="MainMenu"]
+margin_right = 448.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="MainMenu/MenuOptionsBox"]
+margin_right = 448.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 100 )
+flat = true
+
+[node name="StartLabel" type="Label" parent="MainMenu/MenuOptionsBox/StartButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 0.164706, 0.435294, 0.027451, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Start!"
+
+[node name="HelpButton" type="Button" parent="MainMenu/MenuOptionsBox"]
+margin_top = 104.0
+margin_right = 448.0
+margin_bottom = 254.0
+rect_min_size = Vector2( 100, 150 )
+flat = true
+
+[node name="HelpLabel" type="Label" parent="MainMenu/MenuOptionsBox/HelpButton"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 150, 100 )
+custom_colors/font_color = Color( 0.807843, 0.0784314, 0.231373, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Help!"
+
+[node name="MenuAnimation" type="TextureRect" parent="MainMenu"]
+margin_left = 452.0
+margin_right = 900.0
+margin_bottom = 440.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource( 1 )

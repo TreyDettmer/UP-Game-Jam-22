@@ -28,6 +28,8 @@ position = Vector2( 648, 504 )
 [connection signal="updateObstacles" from="." to="MenuLayer" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="MenuLayer" method="_on_Main_updateOrganisms"]
 [connection signal="updateScore" from="." to="MenuLayer" method="_on_Main_updateScore"]
+[connection signal="endGame" from="MenuLayer" to="." method="_on_MenuLayer_endGame"]
+[connection signal="restartGame" from="MenuLayer" to="." method="_on_MenuLayer_restartGame"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket3" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket2" to="." method="_on_ScoreBucket_organism_scored"]

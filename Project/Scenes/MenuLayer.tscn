@@ -31,7 +31,7 @@ margin_right = 1024.0
 margin_bottom = 51.0
 custom_colors/font_color = Color( 0.113725, 0.976471, 0.270588, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Prev Best: "
+text = "Prev Best: 0"
 
 [node name="NumOrganisms" type="Label" parent="."]
 margin_left = 8.0
@@ -60,7 +60,6 @@ margin_right = 827.0
 margin_bottom = 600.0
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 2 )]
-visible = false
 script = ExtResource( 4 )
 
 [node name="GameOverMenu" type="GridContainer" parent="."]
@@ -199,5 +198,6 @@ margin_bottom = 171.0
 text = "Quit"
 icon_align = 1
 
+[connection signal="endGameFromMenu" from="OptionsMenu" to="." method="_on_OptionsMenu_endGameFromMenu"]
 [connection signal="pressed" from="GameOverMenu/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="GameOverMenu/QuitButton" to="." method="_on_QuitButton_pressed"]

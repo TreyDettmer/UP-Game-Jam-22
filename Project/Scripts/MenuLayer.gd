@@ -35,3 +35,7 @@ func _on_QuitButton_pressed():
 
 func _on_RestartButton_pressed():
 	emit_signal("restartGame", score)
+
+
+func _on_OptionsMenu_endGameFromMenu():
+	_on_QuitButton_pressed()

@@ -58,7 +58,7 @@ func load_highScore():
 #save the score and then quit
 func _on_MenuLayer_endGame(score):
 	calcScore(score)
-	#get_tree().quit()
+	get_tree().quit()
 
 func _on_MenuLayer_restartGame(score):
 	calcScore(score)

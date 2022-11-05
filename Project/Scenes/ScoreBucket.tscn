@@ -1,11 +1,27 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/ScoreBucket.gd" type="Script" id=1]
 [ext_resource path="res://Art/rightcollisionscorebox.png.png" type="Texture" id=2]
 [ext_resource path="res://Art/leftcollisionscorebox.png" type="Texture" id=3]
+[ext_resource path="res://Art/Confetti/cframe7.png" type="Texture" id=4]
+[ext_resource path="res://Art/Confetti/cframe2.png" type="Texture" id=5]
+[ext_resource path="res://Art/Confetti/cframe1.png" type="Texture" id=6]
+[ext_resource path="res://Art/Confetti/cframe3.png" type="Texture" id=7]
+[ext_resource path="res://Art/Confetti/cframe4.png" type="Texture" id=8]
+[ext_resource path="res://Art/Confetti/cframe5.png" type="Texture" id=9]
+[ext_resource path="res://Art/Confetti/cframe6.png" type="Texture" id=10]
+[ext_resource path="res://Art/Confetti/EmptyFrame.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 7 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "default",
+"speed": 15.0
+} ]
 
 [node name="ScoreBucket" type="StaticBody2D" groups=["ScoreBucket"]]
 script = ExtResource( 1 )
@@ -36,5 +52,10 @@ texture = ExtResource( 3 )
 position = Vector2( 72, -8 )
 scale = Vector2( 1.1, 1.6 )
 texture = ExtResource( 2 )
+
+[node name="ConfettiAnimation" type="AnimatedSprite" parent="."]
+position = Vector2( 4, -3.18281 )
+scale = Vector2( 0.225806, 0.225806 )
+frames = SubResource( 2 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-signal organism_scored
+signal organism_scoreds
 
 func _ready():
 	pass # Replace with function body.

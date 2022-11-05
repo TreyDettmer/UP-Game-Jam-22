@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ScoreBucket.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/ScoreBucket.gd" type="Script" id=1]
 [ext_resource path="res://Art/rightcollisionscorebox.png.png" type="Texture" id=2]
 [ext_resource path="res://Art/leftcollisionscorebox.png" type="Texture" id=3]
 

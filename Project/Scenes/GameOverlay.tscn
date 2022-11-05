@@ -45,6 +45,7 @@ text = "Available
 obstacles:"
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 margin_left = 171.0
 margin_right = 827.0
 margin_bottom = 600.0

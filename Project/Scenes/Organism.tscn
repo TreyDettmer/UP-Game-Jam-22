@@ -279,7 +279,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("Popframe2:visible")
@@ -393,6 +393,7 @@ scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 12 )
 
 [node name="Popframe1" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -10 )
 scale = Vector2( 0.09, 0.09 )
 texture = ExtResource( 13 )
@@ -417,3 +418,4 @@ texture = ExtResource( 16 )
 
 [connection signal="body_entered" from="." to="." method="_on_Organism_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Organism_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -49,7 +49,6 @@ func _ready():
 	spawn_organisms();
 
 func _process(_delta):
-	#$BucketTimer.time_left
 	$PatternSwitchTimer.set_text(str($BucketTimer.time_left))
 	
 	if  orgs.size() > endGame_populationLimit:
@@ -59,6 +58,9 @@ func _process(_delta):
 	if Input.is_action_just_pressed("mute"):
 		var master_sound = AudioServer.get_bus_index("Master")
 		AudioServer.set_bus_mute(master_sound, !AudioServer.is_bus_mute(master_sound))
+	
+	emit_signal("updateObstacles", $ObstaclePile.quantity)
+	
 func create_organism_pool():
 	print("Creating organism pool...");
 	for i in range(max_organism_count):
@@ -129,6 +131,7 @@ func handle_organism_reproduction(organism1, organism2):
 	if OS.get_ticks_msec() - orgs_reproduction_times[organism1_index] > 1000 and OS.get_ticks_msec() - orgs_reproduction_times[organism2_index] > 1000:
 		orgs_reproduction_times[organism1_index] = OS.get_ticks_msec();
 		orgs_reproduction_times[organism2_index] = OS.get_ticks_msec();
+		
 		spawn_organism_family(organism1,organism2);
 	
 func enable_organism(org):
@@ -144,8 +147,6 @@ func disable_organism(org):
 	org.set_physics_process(false);
 	org.get_node("CollisionShape2D").disabled = true;
 	org.set_mode(1);
-
-	
 
 func _on_ScoreBucket_organism_scored(goodBucket,org):
 	if goodBucket:

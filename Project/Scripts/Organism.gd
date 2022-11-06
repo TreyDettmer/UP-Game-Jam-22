@@ -2,6 +2,8 @@ extends RigidBody2D
 signal organism_reproduced(organism,partner);
 signal organism_died(organism);
 
+onready var animation = get_node("AnimationPlayer")
+
 # how long until two touching organisms reproduce
 export var reproduction_delay = 2.0;
 
@@ -33,7 +35,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	check_if_should_reproduce(delta);
-	$AnimationPlayer.play("Falling")
+	animation.play("Falling")
 
 func check_if_should_reproduce(_delta):
 	
@@ -48,6 +50,8 @@ func check_if_should_reproduce(_delta):
 					continue;
 				if OS.get_ticks_msec() - organisms_i_am_touching_times[organism_index] >= reproduction_delay * 1000.0:
 					# ensure that we are really "stuck" and not moving alongside another organism
+					animation.play("Pop")
+					
 					if linear_velocity.length_squared() < 4.0:
 						organisms_i_am_touching_times[organism_index] = OS.get_ticks_msec();
 						emit_signal("organism_reproduced",self,organisms_i_am_touching[organism_index]);
@@ -120,3 +124,11 @@ func _integrate_forces(state):
 				form.origin.x = reset_position.x;
 				form.origin.y = reset_position.y;
 				state.set_transform(form);
+
+func popOrganism():
+	$AnimationPlayer.play("Pop")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Pop":
+		pass

@@ -60,15 +60,24 @@ margin_bottom = 600.0
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 2 )]
 
+[node name="GameOverRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 320.0
+margin_right = -256.0
+color = Color( 0.054902, 0, 1, 1 )
+
 [node name="GameOverMenu" type="GridContainer" parent="."]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = 128.0
-margin_right = 128.0
-margin_bottom = -216.0
+margin_left = -160.0
+margin_top = 40.0
+margin_right = 32.0
+margin_bottom = -304.0
+rect_scale = Vector2( 2, 2 )
 columns = 3
 
 [node name="placeholder" type="Label" parent="GameOverMenu"]

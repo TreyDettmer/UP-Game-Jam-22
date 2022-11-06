@@ -19,6 +19,8 @@ var isGameOver = false
 onready var organism = preload("res://Scenes/Organism.tscn")
 var orgs = [] #array for loading total organisms
 
+onready var obstacle = preload("res://Scenes/Obstacle.tscn")
+
 onready var MenuLayer = get_node("MenuLayer")
 # array of all organisms that could possibly be in the level
 var organism_pool = [];

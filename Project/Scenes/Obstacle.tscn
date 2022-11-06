@@ -5,6 +5,7 @@
 
 [node name="Obstacle" type="StaticBody2D"]
 position = Vector2( 0, 16 )
+scale = Vector2( 2, 2 )
 input_pickable = true
 script = ExtResource( 1 )
 

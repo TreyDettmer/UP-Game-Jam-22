@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-signal organism_scored(goodBucket)
+
+signal organism_scored(goodBucket,organism)
 export var goodBucket = true
 
 var timeSinceFlip = 0
@@ -25,7 +26,7 @@ func _process(_delta):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("organism"):
-		emit_signal("organism_scored", goodBucket)
+		emit_signal("organism_scored", goodBucket,body)
 		if goodBucket:
 			$ConfettiAnimation.show()
 			$ConfettiAnimation.play("default")

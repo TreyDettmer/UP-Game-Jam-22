@@ -16,6 +16,7 @@ export var initialObstacles = 20
 export var max_organism_count = 400;
 export var endGame_populationLimit = 50 #The maximum population before the game ends
 export var max_organism_age = 5;
+export var min_obstacle_y_value = 300;
 var isGameOver = false
 
 onready var organism = preload("res://Scenes/Organism.tscn")
@@ -108,12 +109,16 @@ func spawn_organism_family(parent_organism1,parent_organism2):
 	parent_organism2.should_reset = true;
 	parent_organism2.separate_from_all();
 	
+	# spawn child
+	spawn_organism();
+	
+	
+func spawn_organism():
 	if organism_current_pool_index >= max_organism_count:
 		print("Reached max organism count");
 		return;
 
-	# spawn child
-	spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
+	var spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 	var instantiated_organism = organism_pool[organism_current_pool_index];
 	orgs.push_back(instantiated_organism);
 	orgs_reproduction_times.push_back(OS.get_ticks_msec());
@@ -121,6 +126,7 @@ func spawn_organism_family(parent_organism1,parent_organism2):
 	enable_organism(instantiated_organism);
 	emit_signal("updateOrganisms", orgs.size());
 	organism_current_pool_index += 1;
+
 
 
 func handle_organism_reproduction(organism1, organism2):
@@ -138,8 +144,10 @@ func enable_organism(org):
 	org.visible = true;
 	org.set_process(true);
 	org.set_physics_process(true);
-	org.get_node("CollisionShape2D").disabled = false;
-	org.set_mode(0);
+	org.get_node("CollisionShape2D").set_deferred("disabled",false);
+	org.call_deferred("set_mode",0);
+	#org.get_node("CollisionShape2D").disabled = false;
+	#org.set_mode(0);
 	
 func disable_organism(org):
 	org.visible = false;
@@ -151,6 +159,8 @@ func disable_organism(org):
 func _on_ScoreBucket_organism_scored(goodBucket,org):
 	if goodBucket:
 		currentScore+=1
+	else:
+		spawn_organism();
 	org.Age();
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
@@ -221,3 +231,7 @@ func killObjs():
 	var objsdelete = get_tree().get_nodes_in_group("objects")
 	for obj in objsdelete:
 		obj.queue_free()
+
+
+func _on_ObstaclePile_quantity_changed(newAmount):
+		emit_signal("updateObstacles", newAmount)

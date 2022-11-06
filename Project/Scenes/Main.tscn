@@ -49,6 +49,7 @@ font_data = SubResource( 5 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+min_obstacle_y_value = 650
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -1
@@ -404,3 +405,4 @@ volume_db = -30.0
 [connection signal="endGameFromMenu" from="UI/OptionsMenu" to="UI" method="_on_OptionsMenu_endGameFromMenu"]
 [connection signal="pressed" from="UI/GameOverMenu/RestartButton" to="UI" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/QuitButton" to="UI" method="_on_QuitButton_pressed"]
+[connection signal="quantity_changed" from="ObstaclePile" to="." method="_on_ObstaclePile_quantity_changed"]

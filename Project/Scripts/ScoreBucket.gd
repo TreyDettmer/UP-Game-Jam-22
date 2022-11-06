@@ -1,6 +1,7 @@
 extends StaticBody2D
 
-signal organism_scored
+signal organism_scored(goodBucket)
+export var goodBucket = true
 
 func _ready():
 	$ConfettiAnimation.hide()

@@ -36,8 +36,9 @@ var min_x_position = 0.0;
 func _ready():
 	rng.randomize();
 	emit_signal("updateScore", currentScore)
-	emit_signal("updateObstacles", initialObstacles)
+	emit_signal("updateObstacles", $ObstaclePile.quantity)
 	emit_signal("updateOrganisms", initialOrganisms)
+	
 	load_highScore()
 	viewport_size = get_viewport().size;
 	min_x_position = 200;
@@ -46,6 +47,9 @@ func _ready():
 	spawn_organisms();
 
 func _process(_delta):
+	#$BucketTimer.time_left
+	$PatternSwitchTimer.set_text(str($BucketTimer.time_left))
+	
 	if  orgs.size() > endGame_populationLimit:
 		isGameOver = true
 		gameOver()
@@ -135,13 +139,13 @@ func disable_organism(org):
 	org.set_physics_process(false);
 	org.get_node("CollisionShape2D").disabled = true;
 	org.set_mode(1);
-#	org.get_node("CollisionShape2D").set_deferred("disabled",true);
-#	org.call_deferred("set_mode",1);
 
 	
-func _on_ScoreBucket_organism_scored(organism):
-	currentScore+=1
-	organism.Age();
+
+func _on_ScoreBucket_organism_scored(goodBucket,org):
+	if goodBucket:
+		currentScore+=1
+	org.Age();
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
 	
@@ -150,6 +154,9 @@ func handle_organism_death(org):
 	orgs.remove(organism_index);
 	orgs_reproduction_times.remove(organism_index);
 	emit_signal("updateOrganisms", orgs.size());
+	if orgs.size() <= 0:
+		isGameOver = true
+		gameOver()
 
 
 func calcScore(score):
@@ -205,4 +212,3 @@ func killObjs():
 	var objsdelete = get_tree().get_nodes_in_group("objects")
 	for obj in objsdelete:
 		obj.queue_free()
-

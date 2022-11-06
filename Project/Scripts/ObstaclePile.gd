@@ -4,6 +4,8 @@ extends Node2D
 # Defines a generator for obstacles. Whenever an obstacle is dragged off the
 # top of the pile, a new one is created.
 
+signal quantity_changed(newAmount)
+
 # Number of obstacles in this pile
 export var quantity = 5;
 
@@ -11,7 +13,6 @@ onready var topOfPile = get_node("Obstacle");
 const OBSTACLE = preload("res://Scenes/Obstacle.tscn");
 
 func _ready():
-	$Label.text = str(quantity);
 	topOfPile.connect("dragged", self, "onDragObstacle");
 
 # Called by the obstacle at the top of the pile when it has been dragged
@@ -22,7 +23,7 @@ func onDragObstacle():
 		topOfPile.disconnect("dragged", self, "onDragObstacle")
 		topOfPile = generateObstacle();
 		quantity -= 1;
-		$Label.text = str(quantity)
+		emit_signal("quantity_changed", quantity);
 		
 # Generates a new obstacle and connects its signals
 func generateObstacle():

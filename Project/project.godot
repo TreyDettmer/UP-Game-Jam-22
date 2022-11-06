@@ -14,6 +14,13 @@ config/name="UP-Game-Jam-22"
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1600
+window/size/height=900
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [global]
 
 input=false

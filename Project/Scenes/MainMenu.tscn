@@ -96,6 +96,7 @@ align = 1
 position = Vector2( 288, 345 )
 scale = Vector2( 0.245, 0.245 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
@@ -136,13 +137,13 @@ TO PLAY: Place shapes on the map to guide the giffilpuffs together into the catc
 
 the bottom of the screen.  Note, not all the bins have pails due to damage caused by the 
 
-explosions.  To maximize your score, direct the giffilpuffs into functioning pails while the 
+explosions. Damaged bins cause the population to increase. To maximize your score, direct
 
-damaged bins are being repaired.  As the population grows, adjust your strategy to keep 
+ the giffilpuffs into functioning pails while the damaged bins are being repaired.  As the 
 
-too many giffilpuffs from mating and, thus, maintain the population at a high level without 
+population grows, adjust your strategy to keep too many giffilpuffs from mating and, 
 
-going too high."
+thus, maintain the population at a high level without going too high."
 
 [node name="CreatorsLabel" type="Label" parent="."]
 anchor_right = 1.0

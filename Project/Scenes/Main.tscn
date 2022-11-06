@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ScoreBucket.tscn" type="PackedScene" id=2]
@@ -7,6 +7,10 @@
 [ext_resource path="res://Fonts/zorque.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scripts/MenuLayer.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/ScoreBuckets.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -21,8 +25,30 @@ font_data = ExtResource( 5 )
 [sub_resource type="DynamicFont" id=3]
 font_data = ExtResource( 5 )
 
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://Fonts/zorque.otf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+extra_spacing_char = 1
+font_data = SubResource( 5 )
+
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="BucketTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="PatternSwitchTimer" type="Label" parent="."]
+margin_left = 1524.0
+margin_top = 168.0
+margin_right = 1596.0
+margin_bottom = 232.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 1
+valign = 1
 
 [node name="ScoreBuckets" type="Node2D" parent="."]
 position = Vector2( 53, 308 )
@@ -69,10 +95,6 @@ goodBucket = false
 position = Vector2( 1279, 535 )
 scale = Vector2( 0.65, 0.65 )
 goodBucket = false
-
-[node name="BucketTimer" type="Timer" parent="ScoreBuckets"]
-wait_time = 10.0
-autostart = true
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
 position = Vector2( -3, 301 )
@@ -291,6 +313,16 @@ margin_bottom = 213.0
 text = "Quit"
 icon_align = 1
 
+[node name="PatternSwitchLabel" type="Label" parent="UI"]
+margin_left = 1431.0
+margin_top = 160.0
+margin_right = 1551.0
+margin_bottom = 235.0
+custom_fonts/font = SubResource( 4 )
+text = "Pattern 
+Switch:
+"
+
 [node name="ObstaclePile" parent="." instance=ExtResource( 3 )]
 position = Vector2( 66, 333 )
 
@@ -298,6 +330,7 @@ position = Vector2( 66, 333 )
 [connection signal="updateObstacles" from="." to="UI" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="UI" method="_on_Main_updateOrganisms"]
 [connection signal="updateScore" from="." to="UI" method="_on_Main_updateScore"]
+[connection signal="timeout" from="BucketTimer" to="ScoreBuckets" method="_on_BucketTimer_timeout"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket2" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket3" to="." method="_on_ScoreBucket_organism_scored"]
@@ -307,7 +340,6 @@ position = Vector2( 66, 333 )
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket7" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket8" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket9" to="." method="_on_ScoreBucket_organism_scored"]
-[connection signal="timeout" from="ScoreBuckets/BucketTimer" to="ScoreBuckets" method="_on_BucketTimer_timeout"]
 [connection signal="endGame" from="UI" to="." method="_on_MenuLayer_endGame"]
 [connection signal="restartGame" from="UI" to="." method="_on_MenuLayer_restartGame"]
 [connection signal="endGameFromMenu" from="UI/OptionsMenu" to="UI" method="_on_OptionsMenu_endGameFromMenu"]

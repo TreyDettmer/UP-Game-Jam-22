@@ -46,6 +46,9 @@ func _ready():
 	spawn_organisms();
 
 func _process(_delta):
+	#$BucketTimer.time_left
+	$PatternSwitchTimer.set_text(str($BucketTimer.time_left))
+	
 	if  orgs.size() > endGame_populationLimit:
 		isGameOver = true
 		gameOver()

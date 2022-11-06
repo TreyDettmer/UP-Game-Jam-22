@@ -73,9 +73,9 @@ input_pass_on_modal_close_click = false
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 margin_left = -83.0
-margin_top = -22.0001
+margin_top = -24.0001
 margin_right = 3184.0
-margin_bottom = 7546.0
+margin_bottom = 7544.0
 rect_rotation = 0.5
 rect_scale = Vector2( 0.1, 0.15 )
 mouse_filter = 2
@@ -111,9 +111,9 @@ wait_time = 10.0
 autostart = true
 
 [node name="PatternSwitchTimer" type="Label" parent="."]
-margin_left = 1540.0
+margin_left = 1515.0
 margin_top = 235.0
-margin_right = 1612.0
+margin_right = 1587.0
 margin_bottom = 299.0
 custom_fonts/font = SubResource( 6 )
 text = "0"
@@ -194,9 +194,9 @@ custom_fonts/font = SubResource( 1 )
 text = "Score: "
 
 [node name="HighScoreLabel" type="Label" parent="UI"]
-margin_left = 1446.0
+margin_left = 1422.0
 margin_top = 75.0
-margin_right = 1638.0
+margin_right = 1614.0
 margin_bottom = 110.0
 custom_colors/font_color = Color( 0.113725, 0.976471, 0.270588, 1 )
 custom_fonts/font = SubResource( 1 )
@@ -213,9 +213,9 @@ text = "Active
 organisms:"
 
 [node name="MaxPop" type="Label" parent="UI"]
-margin_left = 1446.0
+margin_left = 1422.0
 margin_top = 386.0
-margin_right = 1610.0
+margin_right = 1586.0
 margin_bottom = 522.0
 custom_fonts/font = SubResource( 8 )
 text = "Safe Giffilpuff  maximum population:"
@@ -402,9 +402,9 @@ text = "The Giffilpuff population is out of control!
 align = 1
 
 [node name="PatternSwitchLabel" type="Label" parent="UI"]
-margin_left = 1446.0
+margin_left = 1422.0
 margin_top = 227.0
-margin_right = 1566.0
+margin_right = 1542.0
 margin_bottom = 308.0
 custom_fonts/font = SubResource( 4 )
 text = "Pattern 

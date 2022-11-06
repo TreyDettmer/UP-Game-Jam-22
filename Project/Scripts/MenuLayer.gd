@@ -24,6 +24,7 @@ func _on_Main_updateOrganisms(numOrgs):
 
 func _on_Main_updateObstacles(numObs):
 	$NumObstacles.set_text("Available\nObstacles: " + str(numObs))
+	print("Received")
 
 
 func endGame():
@@ -46,4 +47,3 @@ func _on_OptionsMenu_endGameFromMenu():
 func _on_Main_updateHighScore(prevHighScore):
 	$HighScoreLabel.set_text("Prev Best: " + str(prevHighScore))
 	highScore = prevHighScore
-

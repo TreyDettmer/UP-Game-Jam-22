@@ -12,6 +12,8 @@ var isRotating = false;
 var dragOffset;		   # The distance from the origin of the obstacle to the mouse cursor
 					   # when it is dragged
 var rotationOrigin;
+var prevMousePosition = Vector2.ZERO; # Used to calculate mouse delta/velocity for hitting organisms
+var mouseDelta = Vector2.ZERO;
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -55,12 +57,14 @@ func _input_event(viewport, event, shape_idx):
 
 # Toggles the collisions and opacity 	
 func toggleCollisions():
-	if (!$CollisionPolygon2D.disabled):
-		$CollisionPolygon2D.disabled = true;
-		$ObstacleGraphic.setOpacity(0.5);
-	else:
-		$CollisionPolygon2D.disabled = false;
-		$ObstacleGraphic.setOpacity(1.0);
+#	if (!$CollisionPolygon2D.disabled):
+#		$CollisionPolygon2D.disabled = true;
+#		$ObstacleGraphic.setOpacity(0.5);
+#	else:
+#		$CollisionPolygon2D.disabled = false;
+#		$ObstacleGraphic.setOpacity(1.0);
+	$CollisionPolygon2D.disabled = !$CollisionPolygon2D.disabled;
+	pass
 				
 func _process(delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and isDragged:
@@ -76,6 +80,15 @@ func _process(delta):
 			var adj = get_global_mouse_position().x - rotationOrigin.x;
 			var newRotation = atan2(opp, adj);
 			
-			
 			$ObstacleGraphic.rotation = newRotation;
 			$CollisionPolygon2D.rotation = newRotation;
+			
+	# Calculating mouse delta
+	mouseDelta = get_global_mouse_position() - prevMousePosition;
+	prevMousePosition = get_global_mouse_position();
+	
+	#print(mouseDelta.length());
+
+func _on_Area2D_body_entered(body):
+	if (body.name.find("Organism") > -1):
+		body.apply_central_impulse(mouseDelta  * 10)

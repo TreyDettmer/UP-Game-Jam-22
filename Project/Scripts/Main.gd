@@ -35,8 +35,9 @@ var min_x_position = 0.0;
 func _ready():
 	rng.randomize();
 	emit_signal("updateScore", currentScore)
-	emit_signal("updateObstacles", initialObstacles)
+	emit_signal("updateObstacles", $ObstaclePile.quantity)
 	emit_signal("updateOrganisms", initialOrganisms)
+	
 	load_highScore()
 	viewport_size = get_viewport().size;
 	min_x_position = 200;
@@ -193,4 +194,3 @@ func killObjs():
 	var objsdelete = get_tree().get_nodes_in_group("objects")
 	for obj in objsdelete:
 		obj.queue_free()
-

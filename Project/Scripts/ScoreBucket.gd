@@ -11,12 +11,16 @@ func _ready():
 
 func _process(_delta):
 	if goodBucket:
-		$leftside.modulate = Color(0,1,0)
-		$rightside.modulate = Color(0,1,0)
+		$Leftcollisionrampbroken.hide()
+		$Rightcollisionrampbroken.hide()
+		$Leftcollisionramp.show()
+		$Rightcollisionramp.show()
 		$BucketNoLid.show()
 	else:
-		$leftside.modulate = Color(1,0,0)
-		$rightside.modulate = Color(1,0,0)
+		$Leftcollisionrampbroken.show()
+		$Rightcollisionrampbroken.show()
+		$Leftcollisionramp.hide()
+		$Rightcollisionramp.hide()
 		$BucketNoLid.hide()
 	
 	

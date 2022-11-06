@@ -4,6 +4,7 @@ signal updateScore(newScore)
 signal updateHighScore(prevHighScore)
 signal updateOrganisms(numOrgs)
 signal updateObstacles(numObs)
+signal maxCritterPop(maxPop)
 
 const SAVE_FILE_PATH = "user://savedata.save"
 
@@ -38,6 +39,7 @@ func _ready():
 	emit_signal("updateScore", currentScore)
 	emit_signal("updateObstacles", $ObstaclePile.quantity)
 	emit_signal("updateOrganisms", initialOrganisms)
+	emit_signal("maxCritterPop", endGame_populationLimit)
 	
 	load_highScore()
 	viewport_size = get_viewport().size;

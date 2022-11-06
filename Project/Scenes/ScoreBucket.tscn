@@ -62,6 +62,7 @@ frames = SubResource( 2 )
 [node name="BucketNoLid" type="Sprite" parent="."]
 position = Vector2( 0, 40 )
 scale = Vector2( 0.08, 0.08 )
+z_index = 1
 texture = ExtResource( 12 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

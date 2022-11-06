@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ScoreBucket.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Sound/GameOverSound.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sound/click.wav" type="AudioStream" id=10]
 [ext_resource path="res://Art/game background blurry.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/MagicCursor.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=6]
 size = 24
@@ -383,6 +384,8 @@ volume_db = 5.0
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = 5.0
+
+[node name="MagicCursor" parent="." instance=ExtResource( 12 )]
 
 [connection signal="maxCritterPop" from="." to="UI" method="_on_Main_maxCritterPop"]
 [connection signal="updateHighScore" from="." to="UI" method="_on_Main_updateHighScore"]

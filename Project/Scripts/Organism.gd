@@ -1,5 +1,6 @@
 extends RigidBody2D
 signal organism_reproduced(organism,partner);
+signal organism_died(organism);
 
 # how long until two touching organisms reproduce
 export var reproduction_delay = 2.0;
@@ -15,11 +16,18 @@ var rng = RandomNumberGenerator.new();
 var viewport_size = Vector2.ZERO;
 var max_x_position = 1000.0;
 var min_x_position = 0.0;
+var age = 0;
+var max_age = 5;
+var is_dead = false;
+export var main_colors = [Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), ]
+export var secondary_colors = [Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), Color(1.0,1.0,1.0), ]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize();
 	viewport_size = get_viewport().size;
+	$Creaturesprite_main_color.modulate = main_colors[age];
+	$Creaturesprite_secondary_color.modulate = secondary_colors[age];
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -77,20 +85,38 @@ func separate_from_all():
 		organisms_i_am_touching.remove(organism_index);
 		organisms_i_am_touching_times.remove(organism_index);
 		organism_index -= 1;
+		
+func Age():
+	age += 1;
+	if age >= main_colors.size():
+		$Creaturesprite_main_color.modulate = main_colors[main_colors.size() - 1];
+		$Creaturesprite_secondary_color.modulate = secondary_colors[main_colors.size() - 1];
+	else:
+		$Creaturesprite_main_color.modulate = main_colors[age];
+		$Creaturesprite_secondary_color.modulate = secondary_colors[age];
+	
 	
 func _integrate_forces(state):
-	# if we just reproduced, move to the top of the screen
-	if should_reset:
-		var form = state.get_transform().rotated(-state.get_transform().get_rotation());	
-		form.origin.x = reset_position.x;
-		form.origin.y = reset_position.y;
-		state.set_transform(form);
-		should_reset = false
-	
-	# if we are below the screen, move to the top of the screen
-	if state.get_transform().get_origin().y > viewport_size.y + 100.0:
-		var form = state.get_transform().rotated(-state.get_transform().get_rotation());
-		reset_position = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
-		form.origin.x = reset_position.x;
-		form.origin.y = reset_position.y;
-		state.set_transform(form);
+	if not is_dead:
+		# if we just reproduced, move to the top of the screen
+		if should_reset:
+			var form = state.get_transform().rotated(-state.get_transform().get_rotation());	
+			form.origin.x = reset_position.x;
+			form.origin.y = reset_position.y;
+			state.set_transform(form);
+			should_reset = false
+		
+		# if we are below the screen, move to the top of the screen
+		if state.get_transform().get_origin().y > viewport_size.y + 200.0:
+			if age > max_age:
+				emit_signal("organism_died",self);
+				is_dead = true;
+				$CollisionShape2D.set_deferred("disabled",true);
+				gravity_scale = 0.0;
+
+			else:	
+				var form = state.get_transform().rotated(-state.get_transform().get_rotation());
+				reset_position = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
+				form.origin.x = reset_position.x;
+				form.origin.y = reset_position.y;
+				state.set_transform(form);

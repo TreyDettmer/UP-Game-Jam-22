@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-signal organism_scored
+signal organism_scored(organism)
 
 func _ready():
 	$ConfettiAnimation.hide()
@@ -12,6 +12,6 @@ func _process(_delta):
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("organism"):
-		emit_signal("organism_scored")
+		emit_signal("organism_scored",body);
 		$ConfettiAnimation.show()
 		$ConfettiAnimation.play("default")

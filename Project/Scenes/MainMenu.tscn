@@ -96,7 +96,6 @@ align = 1
 position = Vector2( 288, 345 )
 scale = Vector2( 0.245, 0.245 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
@@ -167,7 +166,7 @@ margin_right = -1098.0
 margin_bottom = -683.0
 theme = SubResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Giffilpuff Falls"
+text = "Giffilpuff Roundup"
 align = 1
 valign = 1
 autowrap = true

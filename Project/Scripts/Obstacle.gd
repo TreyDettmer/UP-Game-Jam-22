@@ -46,7 +46,7 @@ func _input_event(viewport, event, shape_idx):
 				dragOffset = position - get_global_mouse_position();
 				toggleCollisions();
 				isDragged = true;
-			
+				get_parent().get_parent().get_node("ClickSound").play();
 				emit_signal("dragged")
 				
 		if (event.button_index == BUTTON_RIGHT and event.pressed):

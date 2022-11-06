@@ -63,7 +63,6 @@ text = "Help!"
 position = Vector2( 803, 455 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

@@ -29,7 +29,6 @@ func _on_Main_updateObstacles(numObs):
 	$NumObstacles.set_text("Available\nObstacles: " + str(numObs))
 	#print("Received")
 
-
 func endGame():
 	$GameOverMenu.show()
 	$GiffilpuffMessage.show()
@@ -51,3 +50,6 @@ func _on_OptionsMenu_endGameFromMenu():
 func _on_Main_updateHighScore(prevHighScore):
 	$HighScoreLabel.set_text("Prev Best: " + str(prevHighScore))
 	highScore = prevHighScore
+
+func _on_Main_maxCritterPop(maxPop):
+	$MaxPop.set_text("Safe Giffilpuff maximum population: " + str(maxPop))

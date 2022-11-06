@@ -19,6 +19,8 @@ extra_spacing_char = 1
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=8]
+size = 18
+extra_spacing_char = 1
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -352,6 +354,7 @@ Switch:
 [node name="ObstaclePile" parent="." instance=ExtResource( 3 )]
 position = Vector2( 66, 333 )
 
+[connection signal="maxCritterPop" from="." to="UI" method="_on_Main_maxCritterPop"]
 [connection signal="updateHighScore" from="." to="UI" method="_on_Main_updateHighScore"]
 [connection signal="updateObstacles" from="." to="UI" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="UI" method="_on_Main_updateOrganisms"]

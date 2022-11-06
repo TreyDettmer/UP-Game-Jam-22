@@ -19,9 +19,7 @@ var isGameOver = false
 onready var organism = preload("res://Scenes/Organism.tscn")
 var orgs = [] #array for loading total organisms
 
-onready var obstacle = preload("res://Scenes/Obstacle.tscn")
-
-onready var MenuLayer = get_node("MenuLayer")
+onready var menuLayer = get_node("UI")
 # array of all organisms that could possibly be in the level
 var organism_pool = [];
 # current index in the pool of the next organism that will be created
@@ -179,7 +177,7 @@ func _on_MenuLayer_restartGame(score):
 
 func gameOver():
 	#pulls up the endGame menu
-	MenuLayer.endGame()
+	menuLayer.endGame()
 	#stops the other organisms
 	get_tree().call_group("organism", "set_physics_process", false)
 	killOrgs()

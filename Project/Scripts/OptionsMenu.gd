@@ -8,6 +8,7 @@ signal endGameFromMenu
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$MenuBackground.hide()
+	pass
 	
 
 func _on_QuitButton_pressed():

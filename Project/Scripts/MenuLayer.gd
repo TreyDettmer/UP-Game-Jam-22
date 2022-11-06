@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var gameOverScore = get_node("GameOverMenu/Score")
 #onready var gameOverHighScore = get_node("GameOverMenu/HighScoreEndGame")

@@ -134,8 +134,9 @@ func disable_organism(org):
 	org.set_mode(1);
 
 	
-func _on_ScoreBucket_organism_scored():
-	currentScore+=1
+func _on_ScoreBucket_organism_scored(goodBucket):
+	if goodBucket:
+		currentScore+=1
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
 

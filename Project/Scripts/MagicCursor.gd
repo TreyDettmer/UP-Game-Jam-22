@@ -27,7 +27,10 @@ func _process(delta):
 	if (disableDrawing):
 		return
 	if (!isCursorWithinBounds()):
-		isDragging = false;
+		if (isDragging):
+			isDragging = false;
+			prevMagicSegments.append(currMagicSegment);
+			currMagicSegment = null;
 		return;
 	if (isDragging and (get_global_mouse_position() - currMagicSegment.prevMousePosition).length() > 20):
 		currMagicSegment.addLineSegment();
@@ -53,6 +56,8 @@ func _input(event):
 			isDragging = true;
 	if Input.is_action_just_released("mouse_left"):
 		if (isDragging):
+			prevMagicSegments.append(currMagicSegment);
+			currMagicSegment = null;
 			isDragging = false;
 			
 		
@@ -67,6 +72,8 @@ func startDecay():
 func decay():
 	
 	for segment in prevMagicSegments:
+		if segment == null:
+			break;
 		if segment.length > 0:
 			segment.removeLineSegment()
 			break;

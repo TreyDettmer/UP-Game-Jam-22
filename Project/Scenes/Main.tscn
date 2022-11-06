@@ -29,15 +29,15 @@ position = Vector2( 53, 308 )
 script = ExtResource( 7 )
 
 [node name="ScoreBucket" parent="ScoreBuckets" instance=ExtResource( 2 )]
-position = Vector2( 320, 535 )
-scale = Vector2( 0.65, 0.65 )
-
-[node name="ScoreBucket3" parent="ScoreBuckets" instance=ExtResource( 2 )]
 position = Vector2( 183, 535 )
 scale = Vector2( 0.65, 0.65 )
 goodBucket = false
 
 [node name="ScoreBucket2" parent="ScoreBuckets" instance=ExtResource( 2 )]
+position = Vector2( 320, 535 )
+scale = Vector2( 0.65, 0.65 )
+
+[node name="ScoreBucket3" parent="ScoreBuckets" instance=ExtResource( 2 )]
 position = Vector2( 457, 535 )
 scale = Vector2( 0.65, 0.65 )
 goodBucket = false
@@ -299,8 +299,8 @@ position = Vector2( 66, 333 )
 [connection signal="updateOrganisms" from="." to="UI" method="_on_Main_updateOrganisms"]
 [connection signal="updateScore" from="." to="UI" method="_on_Main_updateScore"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket" to="." method="_on_ScoreBucket_organism_scored"]
-[connection signal="organism_scored" from="ScoreBuckets/ScoreBucket3" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket2" to="." method="_on_ScoreBucket_organism_scored"]
+[connection signal="organism_scored" from="ScoreBuckets/ScoreBucket3" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket4" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket5" to="." method="_on_ScoreBucket_organism_scored"]
 [connection signal="organism_scored" from="ScoreBuckets/ScoreBucket6" to="." method="_on_ScoreBucket_organism_scored"]
@@ -313,4 +313,3 @@ position = Vector2( 66, 333 )
 [connection signal="endGameFromMenu" from="UI/OptionsMenu" to="UI" method="_on_OptionsMenu_endGameFromMenu"]
 [connection signal="pressed" from="UI/GameOverMenu/RestartButton" to="UI" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/QuitButton" to="UI" method="_on_QuitButton_pressed"]
-[connection signal="quantity_changed" from="ObstaclePile" to="UI" method="_on_Main_updateObstacles"]

@@ -33,3 +33,6 @@ func toggleStatus():
 	
 func getStatus():
 	return goodBucket
+	
+func setStatus(status):
+	goodBucket = status

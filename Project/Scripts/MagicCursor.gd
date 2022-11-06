@@ -6,13 +6,13 @@ var polygon2;
 var polygonPoints;
 var polygonPoints2;
 var isDragging = false;
+var disableDrawing = false;
 var dragDuration = 0.1;
 var prevMousePosition;
 var segmentGap = false;
 var segmentAlternate = false;
 
 onready var magicSegmentInstace = preload("res://Scenes/MagicSegment.tscn");
-onready var organism = preload("res://Scenes/Organism.tscn")
 var currMagicSegment = null;
 var prevMagicSegments = [];
 
@@ -24,6 +24,11 @@ func _ready():
 	startDecay();
 
 func _process(delta):
+	if (disableDrawing):
+		return
+	if (!isCursorWithinBounds()):
+		isDragging = false;
+		return;
 	if (isDragging and (get_global_mouse_position() - currMagicSegment.prevMousePosition).length() > 20):
 		currMagicSegment.addLineSegment();
 		currMagicSegment.prevMousePosition = get_global_mouse_position();
@@ -31,6 +36,11 @@ func _process(delta):
 func _input(event):
 	
 	if Input.is_action_just_pressed("mouse_left"):
+		# Check if ObstaclePile is using left mouse input, so we don't drag
+		# a line while dragging an obstacle
+		if (disableDrawing or !isCursorWithinBounds()):
+			return
+	
 		if (!isDragging):
 			if (currMagicSegment != null):
 				prevMagicSegments.append(currMagicSegment);
@@ -45,10 +55,6 @@ func _input(event):
 		if (isDragging):
 			isDragging = false;
 			
-	if Input.is_action_just_pressed(("mouse_right")):
-		var new = organism.instance();
-		new.position.x = 500
-		add_child(new);
 		
 func startDecay():
 	var timer = Timer.new();
@@ -69,3 +75,14 @@ func decay():
 			break;
 		
 	startDecay();
+	
+func isCursorWithinBounds():
+	if (get_parent() != null):
+		if (get_parent().min_obstacle_y_value < get_global_mouse_position().y):
+			return false;
+	return true;
+func onDragObstacle():
+	disableDrawing = true;
+	
+func onReleaseObstacle():
+	disableDrawing = false;

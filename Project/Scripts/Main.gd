@@ -55,7 +55,10 @@ func _process(_delta):
 	if  orgs.size() > endGame_populationLimit:
 		isGameOver = true
 		gameOver()
-
+	
+	if Input.is_action_just_pressed("mute"):
+		var master_sound = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(master_sound, !AudioServer.is_bus_mute(master_sound))
 func create_organism_pool():
 	print("Creating organism pool...");
 	for i in range(max_organism_count):
@@ -204,6 +207,8 @@ func gameOver():
 	get_tree().call_group("organism", "set_physics_process", false)
 	killOrgs()
 	killObjs()
+	$MusicPlayer.stop();
+	$GameOverSound.play();
 	
 func killOrgs():
 	var orgsdelete = get_tree().get_nodes_in_group("organism")

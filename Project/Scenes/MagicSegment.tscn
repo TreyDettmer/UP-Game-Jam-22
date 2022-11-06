@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/MagicSegment.gd" type="Script" id=1]
+
+[node name="MagicSegment" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="LineSegment1" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineSegment1"]
+
+[node name="LineSegment2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LineSegment2"]

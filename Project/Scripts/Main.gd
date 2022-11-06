@@ -201,6 +201,8 @@ func gameOver():
 	get_tree().call_group("organism", "set_physics_process", false)
 	killOrgs()
 	killObjs()
+	$MusicPlayer.stop();
+	$GameOverSound.play();
 	
 func killOrgs():
 	var orgsdelete = get_tree().get_nodes_in_group("organism")

@@ -12,9 +12,11 @@ func _process(_delta):
 	if goodBucket:
 		$leftside.modulate = Color(0,1,0)
 		$rightside.modulate = Color(0,1,0)
+		$BucketNoLid.show()
 	else:
 		$leftside.modulate = Color(1,0,0)
 		$rightside.modulate = Color(1,0,0)
+		$BucketNoLid.hide()
 	
 	
 	if $ConfettiAnimation.frame >= 7 and $ConfettiAnimation.playing:

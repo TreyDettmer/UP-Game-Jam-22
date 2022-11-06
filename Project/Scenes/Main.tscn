@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ScoreBucket.tscn" type="PackedScene" id=2]
@@ -424,6 +424,8 @@ volume_db = -40.0
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -30.0
+
+[node name="MagicCursor" parent="." instance=ExtResource( 12 )]
 
 [connection signal="maxCritterPop" from="." to="UI" method="_on_Main_maxCritterPop"]
 [connection signal="updateHighScore" from="." to="UI" method="_on_Main_updateHighScore"]

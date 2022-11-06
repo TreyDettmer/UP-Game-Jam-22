@@ -51,7 +51,6 @@ font_data = SubResource( 5 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
-max_organism_age = 3
 min_obstacle_y_value = 650
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -112,10 +111,10 @@ wait_time = 10.0
 autostart = true
 
 [node name="PatternSwitchTimer" type="Label" parent="."]
-margin_left = 1493.0
-margin_top = 238.0
-margin_right = 1565.0
-margin_bottom = 302.0
+margin_left = 1540.0
+margin_top = 235.0
+margin_right = 1612.0
+margin_bottom = 299.0
 custom_fonts/font = SubResource( 6 )
 text = "0"
 align = 1
@@ -214,9 +213,9 @@ text = "Active
 organisms:"
 
 [node name="MaxPop" type="Label" parent="UI"]
-margin_left = 1412.0
+margin_left = 1446.0
 margin_top = 386.0
-margin_right = 1576.0
+margin_right = 1610.0
 margin_bottom = 522.0
 custom_fonts/font = SubResource( 8 )
 text = "Safe Giffilpuff  maximum population:"
@@ -403,10 +402,10 @@ text = "The Giffilpuff population is out of control!
 align = 1
 
 [node name="PatternSwitchLabel" type="Label" parent="UI"]
-margin_left = 1416.0
-margin_top = 231.0
-margin_right = 1536.0
-margin_bottom = 312.0
+margin_left = 1446.0
+margin_top = 227.0
+margin_right = 1566.0
+margin_bottom = 308.0
 custom_fonts/font = SubResource( 4 )
 text = "Pattern 
 Switch:
@@ -415,19 +414,18 @@ Switch:
 [node name="ObstaclePile" parent="." instance=ExtResource( 3 )]
 position = Vector2( 66, 333 )
 
-[node name="MagicCursor" parent="." instance=ExtResource( 12 )]
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -40.0
 autoplay = true
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = 5.0
+volume_db = -40.0
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = 5.0
+volume_db = -30.0
 
 [node name="MagicCursor" parent="." instance=ExtResource( 12 )]
 

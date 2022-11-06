@@ -14,6 +14,7 @@ export var initialOrganisms = 4
 export var initialObstacles = 20
 export var max_organism_count = 400;
 export var endGame_populationLimit = 50 #The maximum population before the game ends
+export var max_organism_age = 5;
 var isGameOver = false
 
 onready var organism = preload("res://Scenes/Organism.tscn")
@@ -59,8 +60,10 @@ func create_organism_pool():
 		var instantiated_organism = organism.instance();
 		instantiated_organism.min_x_position = min_x_position;
 		instantiated_organism.max_x_position = max_x_position;
+		instantiated_organism.max_age = max_organism_age;
 		disable_organism(instantiated_organism);
 		instantiated_organism.connect("organism_reproduced",self,"handle_organism_reproduction");
+		instantiated_organism.connect("organism_died",self,"handle_organism_death");
 		organism_pool.push_back(instantiated_organism);
 		add_child(instantiated_organism);
 	print("Finished creating organism pool");
@@ -71,7 +74,7 @@ func spawn_organisms():
 	
 	var spawn_point = Vector2.ZERO;
 	
-	for i in range(initialOrganisms):
+	for _i in range(initialOrganisms):
 		spawn_point = Vector2(rng.randf_range(min_x_position,max_x_position), 0.0);
 		var instantiated_organism = organism_pool[organism_current_pool_index];
 		orgs.push_back(instantiated_organism);
@@ -138,11 +141,22 @@ func disable_organism(org):
 	org.set_mode(1);
 
 	
-func _on_ScoreBucket_organism_scored(goodBucket):
+
+func _on_ScoreBucket_organism_scored(goodBucket,org):
 	if goodBucket:
 		currentScore+=1
+	org.Age();
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
+	
+func handle_organism_death(org):
+	var organism_index = orgs.find(org);
+	orgs.remove(organism_index);
+	orgs_reproduction_times.remove(organism_index);
+	emit_signal("updateOrganisms", orgs.size());
+	if orgs.size() <= 0:
+		isGameOver = true
+		gameOver()
 
 
 func calcScore(score):

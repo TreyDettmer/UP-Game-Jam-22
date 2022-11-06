@@ -101,13 +101,13 @@ position = Vector2( -3, 301 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftWall"]
 position = Vector2( 3, 0 )
-polygon = PoolVector2Array( 0, 600, 184, 600, 184, 400, 128, -320, 0, -320 )
+polygon = PoolVector2Array( 0, 600, 184, 600, 184, 400, 128, -320, -87, -452 )
 
 [node name="RightWall" type="StaticBody2D" parent="."]
 position = Vector2( 578, 300 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightWall"]
-polygon = PoolVector2Array( 1024, 600, 808, 600, 808, 408, 864, -312, 1008, -312 )
+polygon = PoolVector2Array( 1024, 600, 808, 600, 808, 408, 864, -312, 1069, -438 )
 
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0

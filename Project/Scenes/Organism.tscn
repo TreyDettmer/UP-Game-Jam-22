@@ -279,11 +279,13 @@ scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 3 )
 
 [node name="Creaturesprite_main_color" type="Sprite" parent="."]
-scale = Vector2( 0.08, 0.08 )
+position = Vector2( -0.139999, -2.88 )
+scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 11 )
 
 [node name="Creaturesprite_secondary_color" type="Sprite" parent="."]
-scale = Vector2( 0.08, 0.08 )
+position = Vector2( -0.139999, -2.88 )
+scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 12 )
 
 [connection signal="body_entered" from="." to="." method="_on_Organism_body_entered"]

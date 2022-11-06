@@ -15,6 +15,7 @@ export var initialObstacles = 20
 export var max_organism_count = 400;
 export var endGame_populationLimit = 50 #The maximum population before the game ends
 export var max_organism_age = 5;
+export var min_obstacle_y_value = 300;
 var isGameOver = false
 
 onready var organism = preload("res://Scenes/Organism.tscn")
@@ -53,7 +54,10 @@ func _process(_delta):
 	if  orgs.size() > endGame_populationLimit:
 		isGameOver = true
 		gameOver()
-
+	
+	if Input.is_action_just_pressed("mute"):
+		var master_sound = AudioServer.get_bus_index("Master")
+		AudioServer.set_bus_mute(master_sound, !AudioServer.is_bus_mute(master_sound))
 func create_organism_pool():
 	print("Creating organism pool...");
 	for i in range(max_organism_count):
@@ -201,6 +205,8 @@ func gameOver():
 	get_tree().call_group("organism", "set_physics_process", false)
 	killOrgs()
 	killObjs()
+	$MusicPlayer.stop();
+	$GameOverSound.play();
 	
 func killOrgs():
 	var orgsdelete = get_tree().get_nodes_in_group("organism")
@@ -212,3 +218,7 @@ func killObjs():
 	var objsdelete = get_tree().get_nodes_in_group("objects")
 	for obj in objsdelete:
 		obj.queue_free()
+
+
+func _on_ObstaclePile_quantity_changed(newAmount):
+		emit_signal("updateObstacles", newAmount)

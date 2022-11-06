@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ScoreBucket.tscn" type="PackedScene" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Fonts/zorque.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://Scripts/MenuLayer.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/ScoreBuckets.gd" type="Script" id=7]
+[ext_resource path="res://Sound/up-game-jam-22-theme-song.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sound/GameOverSound.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sound/click.wav" type="AudioStream" id=10]
 
 [sub_resource type="DynamicFont" id=6]
 size = 24
@@ -35,6 +38,7 @@ font_data = SubResource( 5 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+min_obstacle_y_value = 650
 
 [node name="BucketTimer" type="Timer" parent="."]
 wait_time = 10.0
@@ -326,6 +330,19 @@ Switch:
 [node name="ObstaclePile" parent="." instance=ExtResource( 3 )]
 position = Vector2( 66, 333 )
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -40.0
+autoplay = true
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -40.0
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -30.0
+
 [connection signal="updateHighScore" from="." to="UI" method="_on_Main_updateHighScore"]
 [connection signal="updateObstacles" from="." to="UI" method="_on_Main_updateObstacles"]
 [connection signal="updateOrganisms" from="." to="UI" method="_on_Main_updateOrganisms"]
@@ -345,3 +362,4 @@ position = Vector2( 66, 333 )
 [connection signal="endGameFromMenu" from="UI/OptionsMenu" to="UI" method="_on_OptionsMenu_endGameFromMenu"]
 [connection signal="pressed" from="UI/GameOverMenu/RestartButton" to="UI" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/QuitButton" to="UI" method="_on_QuitButton_pressed"]
+[connection signal="quantity_changed" from="ObstaclePile" to="." method="_on_ObstaclePile_quantity_changed"]

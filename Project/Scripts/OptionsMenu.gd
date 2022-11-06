@@ -12,10 +12,12 @@ func _ready():
 	
 
 func _on_QuitButton_pressed():
+	get_parent().get_parent().get_node("ClickSound").play();
 	emit_signal("endGameFromMenu")
 
 
 func _on_ResumeButton_pressed():
+	get_parent().get_parent().get_node("ClickSound").play();
 	get_tree().paused = false
 	gamePaused = false
 	$MenuBackground.hide()
@@ -23,6 +25,7 @@ func _on_ResumeButton_pressed():
 
 
 func _on_MenuButton_pressed():
+	get_parent().get_parent().get_node("ClickSound").play();
 	get_tree().paused = true
 	gamePaused = true
 	$MenuButton.hide()

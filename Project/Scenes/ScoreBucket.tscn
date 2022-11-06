@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scripts/ScoreBucket.gd" type="Script" id=1]
-[ext_resource path="res://Art/rightcollisionscorebox.png.png" type="Texture" id=2]
-[ext_resource path="res://Art/leftcollisionscorebox.png" type="Texture" id=3]
+[ext_resource path="res://Art/ScoreBuckets/rightcollisionramp.png" type="Texture" id=2]
+[ext_resource path="res://Art/ScoreBuckets/leftcollisionramp.png" type="Texture" id=3]
 [ext_resource path="res://Art/Confetti/cframe7.png" type="Texture" id=4]
 [ext_resource path="res://Art/Confetti/cframe2.png" type="Texture" id=5]
 [ext_resource path="res://Art/Confetti/cframe1.png" type="Texture" id=6]
@@ -12,9 +12,11 @@
 [ext_resource path="res://Art/Confetti/cframe6.png" type="Texture" id=10]
 [ext_resource path="res://Art/Confetti/EmptyFrame.png" type="Texture" id=11]
 [ext_resource path="res://Art/ScoreBuckets/bucket_noLid.png" type="Texture" id=12]
+[ext_resource path="res://Art/ScoreBuckets/leftcollisionrampbroken.png" type="Texture" id=13]
+[ext_resource path="res://Art/ScoreBuckets/rightcollisionrampbroken.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40, 7 )
+extents = Vector2( 40, 20 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -24,6 +26,9 @@ animations = [ {
 "speed": 15.0
 } ]
 
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 4
+
 [node name="ScoreBucket" type="StaticBody2D" groups=["ScoreBucket"]]
 scale = Vector2( 0.08, 0.08 )
 script = ExtResource( 1 )
@@ -31,13 +36,13 @@ script = ExtResource( 1 )
 [node name="leftSideCollision" type="CollisionPolygon2D" parent="."]
 position = Vector2( 1, -1 )
 scale = Vector2( 9, 9 )
-polygon = PoolVector2Array( -4.58649, -0.0459473, -10.9432, -10.9432, -10.9432, 9.94324, -4.58649, 9.94324 )
+polygon = PoolVector2Array( -4.5, -1.5, -10.943, -11, -10.9432, 9.94324, -4.5, 9.943 )
 
 [node name="RightSideCollision" type="CollisionPolygon2D" parent="."]
 position = Vector2( -7.10543e-15, -1 )
 rotation = 3.14159
 scale = Vector2( 9, 9 )
-polygon = PoolVector2Array( -10.8514, 10.0351, -10.8514, -9.94324, -4.4946, -9.94324, -4.49459, 0.0459477 )
+polygon = PoolVector2Array( -10.851, 11, -10.8514, -9.94324, -4.5, -9.943, -4.5, 1.5 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -45,23 +50,35 @@ polygon = PoolVector2Array( -10.8514, 10.0351, -10.8514, -9.94324, -4.4946, -9.9
 position = Vector2( 0, 80 )
 shape = SubResource( 1 )
 
-[node name="leftside" type="Sprite" parent="."]
-position = Vector2( -68, -8.00001 )
-scale = Vector2( 1.1, 1.6 )
-texture = ExtResource( 3 )
-
-[node name="rightside" type="Sprite" parent="."]
-position = Vector2( 72, -8 )
-scale = Vector2( 1.1, 1.6 )
+[node name="Rightcollisionramp" type="Sprite" parent="."]
+position = Vector2( 71, 0 )
+scale = Vector2( 0.12, 0.17 )
 texture = ExtResource( 2 )
 
+[node name="Leftcollisionramp" type="Sprite" parent="."]
+position = Vector2( -71, 0 )
+scale = Vector2( 0.12, 0.17 )
+texture = ExtResource( 3 )
+
+[node name="Leftcollisionrampbroken" type="Sprite" parent="."]
+position = Vector2( -71, 0 )
+scale = Vector2( 0.12, 0.17 )
+texture = ExtResource( 13 )
+
+[node name="Rightcollisionrampbroken" type="Sprite" parent="."]
+position = Vector2( 71, 0 )
+scale = Vector2( 0.12, 0.17 )
+texture = ExtResource( 14 )
+
 [node name="ConfettiAnimation" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.225806, 0.225806 )
+position = Vector2( 0, -12.5 )
+scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 2 )
 
 [node name="BucketNoLid" type="Sprite" parent="."]
-position = Vector2( 0, 40 )
-scale = Vector2( 0.08, 0.08 )
+material = SubResource( 3 )
+position = Vector2( 0, 60 )
+scale = Vector2( 0.085, 0.09 )
 z_index = 1
 texture = ExtResource( 12 )
 

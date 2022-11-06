@@ -3,8 +3,6 @@ extends Control
 onready var gameOverScore = get_node("GameOverMenu/Score")
 #onready var gameOverHighScore = get_node("GameOverMenu/HighScoreEndGame")
 
-#onready var switcherTimer = get_node("BucketTimer")
-
 var score
 var highScore
 signal endGame(score)
@@ -13,9 +11,9 @@ signal restartGame(score)
 func _ready():
 	$GameOverMenu.hide()
 	$GameOverRect.hide()
+	$GiffilpuffMessage.hide()
 
 func _process(_delta):
-	#$PatternSwitchTimer.set_text(str($switcherTimer.get_time_left()))
 	pass
 	
 func _on_Main_updateScore(newScore):
@@ -31,9 +29,9 @@ func _on_Main_updateObstacles(numObs):
 	$NumObstacles.set_text("Available\nObstacles: " + str(numObs))
 	#print("Received")
 
-
 func endGame():
 	$GameOverMenu.show()
+	$GiffilpuffMessage.show()
 	#$GameOverRect.show()
 	gameOverScore.set_text("Score: " + str(score))
 
@@ -52,3 +50,6 @@ func _on_OptionsMenu_endGameFromMenu():
 func _on_Main_updateHighScore(prevHighScore):
 	$HighScoreLabel.set_text("Prev Best: " + str(prevHighScore))
 	highScore = prevHighScore
+
+func _on_Main_maxCritterPop(maxPop):
+	$MaxPop.set_text("Safe Giffilpuff maximum population: " + str(maxPop))

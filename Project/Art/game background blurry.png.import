@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rightcollisionscorebox.png.png-71bf921a3fbc7c38452d3a53ce2600e7.stex"
+path="res://.import/game background blurry.png-e0cf2ce3bef50ed73e70139b68b80544.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/rightcollisionscorebox.png.png"
-dest_files=[ "res://.import/rightcollisionscorebox.png.png-71bf921a3fbc7c38452d3a53ce2600e7.stex" ]
+source_file="res://Art/game background blurry.png"
+dest_files=[ "res://.import/game background blurry.png-e0cf2ce3bef50ed73e70139b68b80544.stex" ]
 
 [params]
 

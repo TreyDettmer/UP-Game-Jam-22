@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/leftcollisionscorebox.png-1f60105f4198ad048acd1276d7222438.stex"
+path="res://.import/leftcollisionramp.png-565c532febbe08ceb41e63d9bf97cd43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/leftcollisionscorebox.png"
-dest_files=[ "res://.import/leftcollisionscorebox.png-1f60105f4198ad048acd1276d7222438.stex" ]
+source_file="res://Art/ScoreBuckets/leftcollisionramp.png"
+dest_files=[ "res://.import/leftcollisionramp.png-565c532febbe08ceb41e63d9bf97cd43.stex" ]
 
 [params]
 

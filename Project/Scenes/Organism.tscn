@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Organism.gd" type="Script" id=1]
 [ext_resource path="res://Art/Organism/creaturespritelegs_L3.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Art/Organism/creaturespritelegs_L4.png" type="Texture" id=10]
 [ext_resource path="res://Art/Organism/creaturesprite_main_color.png" type="Texture" id=11]
 [ext_resource path="res://Art/Organism/creaturesprite_secondary_color.png" type="Texture" id=12]
+[ext_resource path="res://Art/popAnimation/popframe1.png" type="Texture" id=13]
+[ext_resource path="res://Art/popAnimation/popframe2.png" type="Texture" id=14]
+[ext_resource path="res://Art/popAnimation/popframe3.png" type="Texture" id=15]
+[ext_resource path="res://Art/popAnimation/popframe4.png" type="Texture" id=16]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 21.38
@@ -116,6 +120,57 @@ tracks/7/keys = {
 "values": [ 0.0, -20.0, 0.0, 10.0, 0.0 ]
 }
 
+[sub_resource type="Animation" id=5]
+resource_name = "Pop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Popframe1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Popframe2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Popframe3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Popframe4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
@@ -214,6 +269,54 @@ tracks/7/keys = {
 "update": 0,
 "values": [ 0.0 ]
 }
+tracks/8/type = "value"
+tracks/8/path = NodePath("Popframe1:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Popframe2:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Popframe3:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Popframe4:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
 
 [node name="Organism" type="RigidBody2D" groups=["organism"]]
 continuous_cd = 1
@@ -271,6 +374,7 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 1.25
 anims/Falling = SubResource( 3 )
+anims/Pop = SubResource( 5 )
 anims/RESET = SubResource( 4 )
 
 [node name="Creaturespritebody" type="Sprite" parent="."]
@@ -288,5 +392,30 @@ position = Vector2( -0.139999, -2.88 )
 scale = Vector2( 0.06, 0.06 )
 texture = ExtResource( 12 )
 
+[node name="Popframe1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 13 )
+
+[node name="Popframe2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+scale = Vector2( 0.09, 0.08 )
+texture = ExtResource( 14 )
+
+[node name="Popframe3" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+scale = Vector2( 0.09, 0.08 )
+texture = ExtResource( 15 )
+
+[node name="Popframe4" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -10 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 16 )
+
 [connection signal="body_entered" from="." to="." method="_on_Organism_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Organism_body_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

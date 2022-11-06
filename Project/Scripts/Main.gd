@@ -184,6 +184,7 @@ func gameOver():
 	#pulls up the endGame menu
 	menuLayer.endGame()
 	#stops the other organisms
+	$BucketTimer.stop()
 	get_tree().call_group("organism", "set_physics_process", false)
 	killOrgs()
 	killObjs()

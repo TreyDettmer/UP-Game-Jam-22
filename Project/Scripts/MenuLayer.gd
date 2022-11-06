@@ -3,8 +3,6 @@ extends Control
 onready var gameOverScore = get_node("GameOverMenu/Score")
 #onready var gameOverHighScore = get_node("GameOverMenu/HighScoreEndGame")
 
-#onready var switcherTimer = get_node("BucketTimer")
-
 var score
 var highScore
 signal endGame(score)
@@ -13,9 +11,9 @@ signal restartGame(score)
 func _ready():
 	$GameOverMenu.hide()
 	$GameOverRect.hide()
+	$GiffilpuffMessage.hide()
 
 func _process(_delta):
-	#$PatternSwitchTimer.set_text(str($switcherTimer.get_time_left()))
 	pass
 	
 func _on_Main_updateScore(newScore):
@@ -34,6 +32,7 @@ func _on_Main_updateObstacles(numObs):
 
 func endGame():
 	$GameOverMenu.show()
+	$GiffilpuffMessage.show()
 	#$GameOverRect.show()
 	gameOverScore.set_text("Score: " + str(score))
 

@@ -1,17 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Art/Organism/creaturesprite.png" type="Texture" id=1]
 [ext_resource path="res://Art/Organism/creaturesprite2.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/ARIALBD.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=4]
-
-[sub_resource type="DynamicFont" id=2]
-size = 96
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 96
-font_data = ExtResource( 3 )
+[ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=5]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -20,6 +13,14 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = ExtResource( 5 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -33,9 +34,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.647059, 0.909804, 0.917647, 1 )
 
+[node name="Animation" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 4 )
+frame = 1
+playing = true
+centered = false
+
 [node name="StartButton" type="Button" parent="."]
-margin_right = 300.0
-margin_bottom = 100.0
+margin_left = 200.0
+margin_top = 500.0
+margin_right = 12.0
+margin_bottom = 14.0
 flat = true
 
 [node name="StartLabel" type="Label" parent="StartButton"]
@@ -45,26 +55,29 @@ custom_colors/font_color = Color( 0.164706, 0.435294, 0.027451, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Start!"
 
-[node name="HelpButton" type="Button" parent="."]
-margin_top = 100.0
-margin_right = 300.0
-margin_bottom = 200.0
-flat = true
+[node name="HelpText" type="Label" parent="."]
+anchor_right = 500.0
+margin_left = 598.0
+margin_top = 50.0
+margin_right = -796794.0
+margin_bottom = 481.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Giffilpuffs are a rare species of arctic tree dweller with a dangerous form of reproduction: 
+they explode into offspring upon prolonged contact with the opposite sex.  During mating 
+season they jump en masse from their trees in hopes of landing near a mate.
 
-[node name="HelpLabel" type="Label" parent="HelpButton"]
-margin_right = 40.0
-margin_bottom = 14.0
-rect_min_size = Vector2( 150, 100 )
-custom_colors/font_color = Color( 0.807843, 0.0784314, 0.231373, 1 )
-custom_fonts/font = SubResource( 3 )
-text = "Help!"
+As an boreal zoologist, you've been spending your summers in Wrangel Island trying to 
+increase the giffilpuff population by guiding their falls to optimal zones.  However, you must 
+show care to avoid a population explosion which might wipe out all other life on the island.
 
-[node name="Animation" type="AnimatedSprite" parent="."]
-position = Vector2( 803, 455 )
-scale = Vector2( 0.4, 0.4 )
-frames = SubResource( 4 )
-frame = 1
-playing = true
+TO PLAY: Place shapes on the map to guide the giffilpuffs together into the catch pails at 
+the bottom of the screen.  Note, not all the bins have pails due to damage caused by the 
+explosions.  To maximize your score, direct the giffilpuffs into functioning pails while the 
+damaged bins are being repaired.  As the population grows, adjust your strategy to keep 
+too many giffilpuffs from mating and, thus, maintain the population at a high level without 
+going too high."
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="HelpButton" to="." method="_on_HelpButton_pressed"]

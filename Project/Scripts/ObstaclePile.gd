@@ -31,7 +31,6 @@ func generateObstacle():
 	var newObstacle = OBSTACLE.instance();
 	
 	self.add_child(newObstacle);
-	print(get_parent().min_obstacle_y_value);
 	newObstacle.min_y_value = get_parent().min_obstacle_y_value - newObstacle.global_position.y;
 	newObstacle.position = Vector2.ZERO;
 	newObstacle.connect("dragged", self, "onDragObstacle");

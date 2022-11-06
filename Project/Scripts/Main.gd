@@ -15,6 +15,7 @@ export var initialObstacles = 20
 export var max_organism_count = 400;
 export var endGame_populationLimit = 50 #The maximum population before the game ends
 export var max_organism_age = 5;
+export var min_obstacle_y_value = 300;
 var isGameOver = false
 
 onready var organism = preload("res://Scenes/Organism.tscn")
@@ -217,3 +218,7 @@ func killObjs():
 	var objsdelete = get_tree().get_nodes_in_group("objects")
 	for obj in objsdelete:
 		obj.queue_free()
+
+
+func _on_ObstaclePile_quantity_changed(newAmount):
+		emit_signal("updateObstacles", newAmount)

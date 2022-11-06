@@ -13,6 +13,7 @@ onready var topOfPile = get_node("Obstacle");
 const OBSTACLE = preload("res://Scenes/Obstacle.tscn");
 
 func _ready():
+	topOfPile.min_y_value = get_parent().min_obstacle_y_value - topOfPile.global_position.y;
 	topOfPile.connect("dragged", self, "onDragObstacle");
 
 # Called by the obstacle at the top of the pile when it has been dragged
@@ -28,8 +29,10 @@ func onDragObstacle():
 # Generates a new obstacle and connects its signals
 func generateObstacle():
 	var newObstacle = OBSTACLE.instance();
-	self.add_child(newObstacle);
 	
+	self.add_child(newObstacle);
+	print(get_parent().min_obstacle_y_value);
+	newObstacle.min_y_value = get_parent().min_obstacle_y_value - newObstacle.global_position.y;
 	newObstacle.position = Vector2.ZERO;
 	newObstacle.connect("dragged", self, "onDragObstacle");
 	

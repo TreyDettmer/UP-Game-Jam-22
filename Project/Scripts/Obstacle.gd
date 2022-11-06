@@ -14,6 +14,7 @@ var dragOffset;		   # The distance from the origin of the obstacle to the mouse 
 var rotationOrigin;
 var prevMousePosition = Vector2.ZERO; # Used to calculate mouse delta/velocity for hitting organisms
 var mouseDelta = Vector2.ZERO;
+var min_y_value = 0;
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -68,7 +69,10 @@ func toggleCollisions():
 				
 func _process(delta):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and isDragged:
-		position = get_global_mouse_position() + dragOffset;
+		var new_position = get_global_mouse_position() + dragOffset;
+		new_position.y = min(new_position.y,min_y_value);
+		position = new_position;
+		
 	# Adjust rotation of triangle based on mouse position
 	if Input.is_mouse_button_pressed(BUTTON_RIGHT) and isRotating:
 		

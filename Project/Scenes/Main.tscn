@@ -313,3 +313,4 @@ position = Vector2( 66, 333 )
 [connection signal="endGameFromMenu" from="UI/OptionsMenu" to="UI" method="_on_OptionsMenu_endGameFromMenu"]
 [connection signal="pressed" from="UI/GameOverMenu/RestartButton" to="UI" method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="UI/GameOverMenu/QuitButton" to="UI" method="_on_QuitButton_pressed"]
+[connection signal="quantity_changed" from="ObstaclePile" to="UI" method="_on_Main_updateObstacles"]

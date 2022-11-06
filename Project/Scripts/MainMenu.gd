@@ -21,3 +21,7 @@ func _on_StartButton_pressed():
 
 func _on_HelpButton_pressed():
 	pass # Replace with function body.
+
+
+func _on_QuitButton_pressed():
+	get_tree().quit();

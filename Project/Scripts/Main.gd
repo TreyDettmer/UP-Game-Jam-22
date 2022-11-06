@@ -52,8 +52,7 @@ func _ready():
 func _process(_delta):
 	$PatternSwitchTimer.set_text(str($BucketTimer.time_left))
 	
-	if  orgs.size() > endGame_populationLimit:
-		isGameOver = true
+	if  orgs.size() > endGame_populationLimit and !isGameOver:
 		gameOver()
 	
 	if Input.is_action_just_pressed("mute"):
@@ -170,8 +169,7 @@ func handle_organism_death(org):
 	orgs.remove(organism_index);
 	orgs_reproduction_times.remove(organism_index);
 	emit_signal("updateOrganisms", orgs.size());
-	if orgs.size() <= 0:
-		isGameOver = true
+	if orgs.size() <= 0 && !isGameOver:
 		gameOver()
 
 
@@ -211,15 +209,17 @@ func _on_MenuLayer_restartGame(score):
 	get_tree().reload_current_scene()
 
 func gameOver():
-	#pulls up the endGame menu
-	menuLayer.endGame()
-	#stops the other organisms
-	$BucketTimer.stop()
-	get_tree().call_group("organism", "set_physics_process", false)
-	killOrgs()
-	killObjs()
-	$MusicPlayer.stop();
-	$GameOverSound.play();
+	if not isGameOver:
+		isGameOver = true
+		#pulls up the endGame menu
+		menuLayer.endGame()
+		#stops the other organisms
+		$BucketTimer.stop()
+		get_tree().call_group("organism", "set_physics_process", false)
+		killOrgs()
+		killObjs()
+		$MusicPlayer.stop();
+		$GameOverSound.play();
 	
 func killOrgs():
 	var orgsdelete = get_tree().get_nodes_in_group("organism")

@@ -46,6 +46,9 @@ func _ready():
 	spawn_organisms();
 
 func _process(_delta):
+	#$BucketTimer.time_left
+	$PatternSwitchTimer.set_text(str($BucketTimer.time_left))
+	
 	if  orgs.size() > endGame_populationLimit:
 		isGameOver = true
 		gameOver()
@@ -135,8 +138,9 @@ func disable_organism(org):
 	org.set_mode(1);
 
 	
-func _on_ScoreBucket_organism_scored():
-	currentScore+=1
+func _on_ScoreBucket_organism_scored(goodBucket):
+	if goodBucket:
+		currentScore+=1
 	emit_signal("updateScore", currentScore)
 	print(currentScore)
 

@@ -12,7 +12,7 @@
 [ext_resource path="res://Art/Organism/creaturespritelegs_L4.png" type="Texture" id=10]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 21.3776
+radius = 21.38
 
 [sub_resource type="Animation" id=3]
 resource_name = "Falling"

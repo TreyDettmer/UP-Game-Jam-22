@@ -15,5 +15,3 @@ func _on_Area2D_body_entered(body):
 		emit_signal("organism_scored")
 		$ConfettiAnimation.show()
 		$ConfettiAnimation.play("default")
-		print($ConfettiAnimation.playing)
-		print($ConfettiAnimation.frame)

@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var gameOverScore = get_node("GameOverMenu/Score")
 #onready var gameOverHighScore = get_node("GameOverMenu/HighScoreEndGame")
@@ -10,6 +10,7 @@ signal restartGame(score)
 
 func _ready():
 	$GameOverMenu.hide()
+	$GameOverRect.hide()
 
 
 func _on_Main_updateScore(newScore):
@@ -27,6 +28,7 @@ func _on_Main_updateObstacles(numObs):
 
 func endGame():
 	$GameOverMenu.show()
+	#$GameOverRect.show()
 	gameOverScore.set_text("Score: " + str(score))
 
 func _on_QuitButton_pressed():

@@ -28,7 +28,7 @@ func _on_Main_updateObstacles(numObs):
 
 func endGame():
 	$GameOverMenu.show()
-	$GameOverRect.show()
+	#$GameOverRect.show()
 	gameOverScore.set_text("Score: " + str(score))
 
 func _on_QuitButton_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Art/Organism/creaturesprite.png" type="Texture" id=1]
 [ext_resource path="res://Art/Organism/creaturesprite2.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Fonts/ARIAL.TTF" type="DynamicFontData" id=5]
 [ext_resource path="res://Sound/click.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sound/up-game-jam-22-theme-song.wav" type="AudioStream" id=7]
+[ext_resource path="res://Fonts/zorque.otf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=2]
 size = 96
@@ -23,6 +24,20 @@ animations = [ {
 [sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 36
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=7]
+default_font = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 60
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -44,15 +59,17 @@ margin_bottom = 605.0
 flat = true
 
 [node name="StartLabel" type="Label" parent="StartButton"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_left = -38.0
+margin_top = 17.0
+margin_right = 212.0
+margin_bottom = 125.0
 custom_colors/font_color = Color( 0.164706, 0.435294, 0.027451, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Start!"
 
 [node name="Animation" type="AnimatedSprite" parent="."]
-position = Vector2( 300, 250 )
-scale = Vector2( 0.4, 0.4 )
+position = Vector2( 288, 345 )
+scale = Vector2( 0.245, 0.245 )
 frames = SubResource( 4 )
 frame = 1
 playing = true
@@ -70,8 +87,8 @@ autoplay = true
 anchor_right = 500.0
 margin_left = 598.0
 margin_top = 50.0
-margin_right = -796794.0
-margin_bottom = 481.0
+margin_right = -798383.0
+margin_bottom = 884.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -103,5 +120,33 @@ damaged bins are being repaired.  As the population grows, adjust your strategy 
 too many giffilpuffs from mating and, thus, maintain the population at a high level without 
 
 going too high."
+
+[node name="CreatorsLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 692.0
+margin_right = -1096.0
+margin_bottom = -26.0
+theme = SubResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Created By: James, Max, Trey, and Professor Nuxoll
+Art By: Josephine"
+autowrap = true
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 72.0
+margin_top = 35.0
+margin_right = -1098.0
+margin_bottom = -683.0
+theme = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Giffilpuff Falls"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

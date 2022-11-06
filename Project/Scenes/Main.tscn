@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ScoreBucket.tscn" type="PackedScene" id=2]
@@ -60,12 +60,16 @@ z_index = -1
 anchor_bottom = 1.0
 margin_right = 175.0
 margin_bottom = 900.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
 
 [node name="RightRect" type="ColorRect" parent="Node2D"]
 anchor_bottom = 1.0
 margin_left = 1395.0
 margin_right = 1600.0
 margin_bottom = 900.0
+mouse_filter = 2
+input_pass_on_modal_close_click = false
 
 [node name="TextureRect" type="TextureRect" parent="Node2D"]
 margin_left = -83.0

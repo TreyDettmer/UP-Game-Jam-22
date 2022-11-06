@@ -54,6 +54,7 @@ text = "Start!"
 position = Vector2( 300, 250 )
 scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]

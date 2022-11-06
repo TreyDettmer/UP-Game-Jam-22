@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/ScoreBucket.gd" type="Script" id=1]
 [ext_resource path="res://Art/ScoreBuckets/rightcollisionramp.png" type="Texture" id=2]
@@ -25,9 +25,6 @@ animations = [ {
 "name": "default",
 "speed": 15.0
 } ]
-
-[sub_resource type="CanvasItemMaterial" id=3]
-blend_mode = 4
 
 [node name="ScoreBucket" type="StaticBody2D" groups=["ScoreBucket"]]
 scale = Vector2( 0.08, 0.08 )
@@ -76,10 +73,8 @@ scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 2 )
 
 [node name="BucketNoLid" type="Sprite" parent="."]
-material = SubResource( 3 )
-position = Vector2( 0, 60 )
+position = Vector2( 0, 50 )
 scale = Vector2( 0.085, 0.09 )
-z_index = 1
 texture = ExtResource( 12 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

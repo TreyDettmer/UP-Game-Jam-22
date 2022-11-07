@@ -34,6 +34,7 @@ func _on_Area2D_body_entered(body):
 		if goodBucket:
 			$ConfettiAnimation.show()
 			$ConfettiAnimation.play("default")
+			$AudioStreamPlayer2D.play()
 
 func toggleStatus():
 	goodBucket = !goodBucket

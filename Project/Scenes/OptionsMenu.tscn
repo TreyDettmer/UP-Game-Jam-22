@@ -52,10 +52,10 @@ custom_fonts/font = SubResource( 3 )
 text = "Resume"
 
 [node name="MenuButton" type="Button" parent="."]
-margin_left = 854.0
-margin_top = 521.0
-margin_right = 974.0
-margin_bottom = 569.0
+margin_left = 877.0
+margin_top = 536.0
+margin_right = 997.0
+margin_bottom = 584.0
 custom_fonts/font = SubResource( 1 )
 text = "Menu"
 

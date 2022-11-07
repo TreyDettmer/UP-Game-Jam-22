@@ -155,7 +155,7 @@ margin_bottom = -26.0
 theme = SubResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Created By: James, Max, Trey, and Professor Nuxoll
-Art By: Josephine"
+Art By: Josie Nuxoll"
 autowrap = true
 
 [node name="TitleLabel" type="Label" parent="."]
